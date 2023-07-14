@@ -1,0 +1,195 @@
+{
+    "schema": {
+        "options": {},
+        "crud_objects": {
+            "TicketCustomAttributes": {
+                "operations": {
+                    "TicketCustomAttributesList": {
+                        "method": "get",
+                        "call": {
+                            "path": "/attributes/custom"
+                        },
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "query_parameters": {
+                            "componentId" : "9"
+                        }
+                    },
+                    "TicketUpdateAttribute": {
+                        "method": "patch",
+                        "removeBlankFields": false,
+                        "call": {
+                            "path": "/{AppID}/tickets/{TicketID}"
+                        },
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "body": [
+                            {"op": "add", "path": "/attributes/{ID}", "value": "{AttributeValue}"}
+                        ],
+                        "query_parameters": {
+                        },
+                        "resource_allowance_default": "prohibited",
+                        "resource_mandatory": [
+                            "AppID",
+                            "TicketID",
+                            "ID",
+                            "AttributeValue"
+                        ]
+                    }
+                },
+                "parameters": {},
+                "key": "ID",
+                "resources": {
+                    "ID": "string*",
+                    "Name": "string*",
+                    "Order": "string*",
+                    "Description": "string*",
+                    "SectionID": "string*",
+                    "SectionName": "string*",
+                    "FieldType": "string*",
+                    "DataType": "string*",
+                    "Choices": [
+                        {
+                            "ID": "string*",
+                            "Name": "string*",
+                            "IsActive": "boolean*",
+                            "DateCreated": "datetime*",
+                            "DateModified": "datetime*",
+                            "Order": "string*"
+                        }
+                    ],
+                    "IsRequired": "boolean*",
+                    "IsUpdatable": "boolean*",
+                    "Value": "string*",
+                    "ValueText": "string*",
+                    "ChoicesText": "string*",
+                    "AppID": "string",
+                    "TicketID" :"string",
+                    "AttributeValue": "string"
+                }
+            },
+            "Accounts": {
+                "operations": {
+                    "AccountsList": {
+                        "method": "get",
+                        "call": {
+                            "path": "/accounts"
+                        },
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "query_parameters": {
+                        }
+                    }
+                },
+                "parameters": {},
+                "key": "ID",
+                "resources": {
+                    "ID": "string*",
+                    "Name": "string*",
+                    "ParentID": "string*",
+                    "ParentName": "string*",
+                    "IsActive": "boolean*",
+                    "Address1": "string*",
+                    "Address2": "string*",
+                    "Address3": "string*",
+                    "Address4": "string*",
+                    "City": "string*",
+                    "StateName": "string*",
+                    "StateAbbr": "string*",
+                    "PostalCode": "string*",
+                    "Country": "string*",
+                    "Phone": "string*",
+                    "Fax": "string*",
+                    "Url": "string*",
+                    "Notes": "string*",
+                    "CreatedDate": "datetime*",
+                    "ModifiedDate": "datetime*",
+                    "Code": "string*",
+                    "IndustryID": "string*",
+                    "IndustryName": "string*",
+                    "ManagerUID": "string*",
+                    "ManagerFullName": "string*"
+                }
+            },
+            "TicketTasks": {
+                "operations": {
+                    "TicketTaskUpdate": {
+                        "method": "post",
+                        "call": {
+                            "path": "{AppID}/tickets/{TicketID}/tasks/{ID}/feed"
+                        },
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "query_parameters": {
+                        },
+                        "resource_allowance_default": "mandatory",
+                        "resource_mandatory": [
+                            "AppID",
+                            "ID",
+                            "TicketID",
+                            "Comments",
+                            "IsPrivate"
+                        ]
+                    }
+                },
+                "parameters": {},
+                "key": "ID",
+                "resources": {
+                    "AppID": "string*",
+                    "ID": "string*",
+                    "TicketID": "string*",
+                    "PercentComplete": "string*",
+                    "Comments": "string*",
+                    "Notify": "string*",
+                    "IsPrivate": "boolean*",
+                    "IsRichHtml": "string*"
+                }
+            }
+
+        }
+    },
+    "rest": {
+        "config": {
+            "baseUrl": "https://{tenant_id}/TDWebApi/api",
+            "get": {
+                "query_parameters": {
+                }
+            },
+            "authentication": "custom_post_token",
+            "call_handling": "generic",
+            "test_connection": {
+                "url": "/accounts"
+            }
+        },
+        "authOptions": {
+            "authUrl": "https://{tenant_id}/TDWebApi/api/auth",
+            "postData": {
+                    "UserName": "{user_name}",
+                    "Password": "{password}"
+            },
+            "directToken": true,
+            "headerName": "Authorization",
+            "headerTemplate": "Bearer {token}"
+        }
+    },
+    "connection": {
+        "items": [
+            {
+                "name": "tenant_id",
+                "type": "textbox",
+                "label": "Tenent URL:",
+                "value": ""
+            },
+            {
+                "name": "page_size",
+                "type": "textbox",
+                "label": "Page Size:",
+                "value": "100"
+            }
+        ]
+    }
+}
