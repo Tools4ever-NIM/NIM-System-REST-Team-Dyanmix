@@ -1,3 +1,19 @@
-# NIM-System-REST-Team-Dynamix
+# Team Dynamix
+<img src="https://github.com/Tools4ever-NIM/NIM-System-Powershell-Team-Dynamix-Report/assets/24281600/80cfb5ca-517d-4f55-90ef-08eb74281eeb" width="256px" />
 
-![image](https://github.com/Tools4ever-NIM/NIM-System-REST-Team-Dynamix/assets/24281600/69480420-0490-478e-b737-9e9477bb0c9b)
+
+## Data Tables
+- Accounts
+- Ticket Custom Attributes
+- Ticket Tasks
+
+
+## Actions
+- Ticket Custom Attributes
+    - Update
+- Ticket Tasks
+    - Update
+
+
+# NIM Docs
+The official NIM documentation can be found at: https://docs.nimsuite.com
