@@ -126,7 +126,7 @@
                         },
                         "query_parameters": {
                         },
-                        "resource_allowance_default": "mandatory",
+                        "resource_allowance_default": "prohibited",
                         "resource_mandatory": [
                             "AppID",
                             "ID",
