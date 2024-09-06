@@ -1,35 +1,84 @@
 {
     "schema": {
-        "options": {},
         "crud_objects": {
+            "Accounts": {
+                "key": "ID",
+                "operations": {
+                    "AccountsList": {
+                        "call": {
+                            "path": "/accounts"
+                        },
+                        "method": "get",
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "query_parameters": {
+                        }
+                    }
+                },
+                "parameters": {
+                },
+                "resources": {
+                    "Address1": "string*",
+                    "Address2": "string*",
+                    "Address3": "string*",
+                    "Address4": "string*",
+                    "City": "string*",
+                    "Code": "string*",
+                    "Country": "string*",
+                    "CreatedDate": "datetime*",
+                    "Fax": "string*",
+                    "ID": "string*",
+                    "IndustryID": "string*",
+                    "IndustryName": "string*",
+                    "IsActive": "boolean*",
+                    "ManagerFullName": "string*",
+                    "ManagerUID": "string*",
+                    "ModifiedDate": "datetime*",
+                    "Name": "string*",
+                    "Notes": "string*",
+                    "ParentID": "string*",
+                    "ParentName": "string*",
+                    "Phone": "string*",
+                    "PostalCode": "string*",
+                    "StateAbbr": "string*",
+                    "StateName": "string*",
+                    "Url": "string*"
+                }
+            },
             "TicketCustomAttributes": {
+                "key": "ID",
                 "operations": {
                     "TicketCustomAttributesList": {
-                        "method": "get",
                         "call": {
                             "path": "/attributes/custom"
                         },
+                        "method": "get",
                         "processing_options": {
                             "output_field": null
                         },
                         "query_parameters": {
-                            "componentId" : "9"
+                            "componentId": "9"
                         }
                     },
                     "TicketUpdateAttribute": {
-                        "method": "patch",
-                        "removeBlankFields": false,
+                        "body": [
+                            {
+                                "op": "add",
+                                "path": "/attributes/{ID}",
+                                "value": "{AttributeValue}"
+                            }
+                        ],
                         "call": {
                             "path": "/{AppID}/tickets/{TicketID}"
                         },
+                        "method": "patch",
                         "processing_options": {
                             "output_field": null
                         },
-                        "body": [
-                            {"op": "add", "path": "/attributes/{ID}", "value": "{AttributeValue}"}
-                        ],
                         "query_parameters": {
                         },
+                        "removeBlankFields": false,
                         "resource_allowance_default": "prohibited",
                         "resource_mandatory": [
                             "AppID",
@@ -39,88 +88,45 @@
                         ]
                     }
                 },
-                "parameters": {},
-                "key": "ID",
+                "parameters": {
+                },
                 "resources": {
-                    "ID": "string*",
-                    "Name": "string*",
-                    "Order": "string*",
-                    "Description": "string*",
-                    "SectionID": "string*",
-                    "SectionName": "string*",
-                    "FieldType": "string*",
-                    "DataType": "string*",
+                    "AppID": "string",
+                    "AttributeValue": "string",
                     "Choices": [
                         {
-                            "ID": "string*",
-                            "Name": "string*",
-                            "IsActive": "boolean*",
                             "DateCreated": "datetime*",
                             "DateModified": "datetime*",
+                            "ID": "string*",
+                            "IsActive": "boolean*",
+                            "Name": "string*",
                             "Order": "string*"
                         }
                     ],
+                    "ChoicesText": "string*",
+                    "DataType": "string*",
+                    "Description": "string*",
+                    "FieldType": "string*",
+                    "ID": "string*",
                     "IsRequired": "boolean*",
                     "IsUpdatable": "boolean*",
-                    "Value": "string*",
-                    "ValueText": "string*",
-                    "ChoicesText": "string*",
-                    "AppID": "string",
-                    "TicketID" :"string",
-                    "AttributeValue": "string"
-                }
-            },
-            "Accounts": {
-                "operations": {
-                    "AccountsList": {
-                        "method": "get",
-                        "call": {
-                            "path": "/accounts"
-                        },
-                        "processing_options": {
-                            "output_field": null
-                        },
-                        "query_parameters": {
-                        }
-                    }
-                },
-                "parameters": {},
-                "key": "ID",
-                "resources": {
-                    "ID": "string*",
                     "Name": "string*",
-                    "ParentID": "string*",
-                    "ParentName": "string*",
-                    "IsActive": "boolean*",
-                    "Address1": "string*",
-                    "Address2": "string*",
-                    "Address3": "string*",
-                    "Address4": "string*",
-                    "City": "string*",
-                    "StateName": "string*",
-                    "StateAbbr": "string*",
-                    "PostalCode": "string*",
-                    "Country": "string*",
-                    "Phone": "string*",
-                    "Fax": "string*",
-                    "Url": "string*",
-                    "Notes": "string*",
-                    "CreatedDate": "datetime*",
-                    "ModifiedDate": "datetime*",
-                    "Code": "string*",
-                    "IndustryID": "string*",
-                    "IndustryName": "string*",
-                    "ManagerUID": "string*",
-                    "ManagerFullName": "string*"
+                    "Order": "string*",
+                    "SectionID": "string*",
+                    "SectionName": "string*",
+                    "TicketID": "string",
+                    "Value": "string*",
+                    "ValueText": "string*"
                 }
             },
             "TicketTasks": {
+                "key": "ID",
                 "operations": {
                     "TicketTaskUpdate": {
-                        "method": "post",
                         "call": {
-                            "path": "{AppID}/tickets/{TicketID}/tasks/{ID}/feed"
+                            "path": "/{AppID}/tickets/{TicketID}/tasks/{ID}/feed"
                         },
+                        "method": "post",
                         "processing_options": {
                             "output_field": null
                         },
@@ -136,58 +142,59 @@
                         ]
                     }
                 },
-                "parameters": {},
-                "key": "ID",
+                "parameters": {
+                },
                 "resources": {
                     "AppID": "string*",
-                    "ID": "string*",
-                    "TicketID": "string*",
-                    "PercentComplete": "string*",
                     "Comments": "string*",
-                    "Notify": "string*",
+                    "ID": "string*",
                     "IsPrivate": "boolean*",
-                    "IsRichHtml": "string*"
+                    "IsRichHtml": "string*",
+                    "Notify": "string*",
+                    "PercentComplete": "string*",
+                    "TicketID": "string*"
                 }
             }
-
+        },
+        "options": {
         }
     },
     "rest": {
         "config": {
+            "authentication": "custom_post_token",
             "baseUrl": "https://{tenant_id}/TDWebApi/api",
+            "call_handling": "generic",
             "get": {
                 "query_parameters": {
                 }
             },
-            "authentication": "custom_post_token",
-            "call_handling": "generic",
             "test_connection": {
                 "url": "/accounts"
             }
-        },
+        }
         "authOptions": {
             "authUrl": "https://{tenant_id}/TDWebApi/api/auth",
-            "postData": {
-                    "UserName": "{user_name}",
-                    "Password": "{password}"
-            },
             "directToken": true,
             "headerName": "Authorization",
-            "headerTemplate": "Bearer {token}"
-        }
+            "headerTemplate": "Bearer {token}",
+            "postData": {
+                "Password": "{password}",
+                "UserName": "{user_name}"
+            }
+        },
     },
     "connection": {
         "items": [
             {
+                "label": "Tenent URL:",
                 "name": "tenant_id",
                 "type": "textbox",
-                "label": "Tenent URL:",
                 "value": ""
             },
             {
+                "label": "Page Size:",
                 "name": "page_size",
                 "type": "textbox",
-                "label": "Page Size:",
                 "value": "100"
             }
         ]
