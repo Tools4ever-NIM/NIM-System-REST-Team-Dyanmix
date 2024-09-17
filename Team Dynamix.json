@@ -97,11 +97,11 @@
                     "TicketsList": {
                         "call": {
                             "path": "/{app_id}/tickets/search",
-                            "body": {
-                                "TypeIDs": "{type_id}",
-								"StatusIDs": "{status_id}"
-                            }
                         },
+			"body": {
+		 		"TypeIDs": "{type_id}",
+				"StatusIDs": "{status_id}"
+			},
                         "verb":"post",
                         "method": "get",
                         "processing_options": {
