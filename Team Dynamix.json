@@ -96,11 +96,11 @@
                 "operations": {
                     "TicketsList": {
                         "call": {
-                            "path": "/{app_id}/tickets/search",
-                            "body": {
+                            "path": "/{app_id}/tickets/search"
+                        },
+						"body": {
                                 "TypeIDs": "{type_id}",
-								"StatusIDs": "{status_id}"
-                            }
+								"StatusIDs": ["{status_id}"]
                         },
                         "verb":"post",
                         "method": "get",
@@ -310,9 +310,24 @@
             "TicketTasks": {
                 "key": "ID",
                 "operations": {
-                    "TicketTaskUpdate": {
+                    "TicketTasksList": {
+                        "method": "get",
+						"call": {
+                            "mode": "iteration",
+							"table": "Tickets",
+							"iterator": "ID",
+							"path": "/{app_id}/tickets/{iterator}"
+                        },
+                        "processing_options": {
+                            "output_field": "Tasks"
+                        },
+                        "query_parameters": {
+                        },
+						"maxSessionCount": 10
+                    },
+					"TicketTaskUpdate": {
                         "call": {
-                            "path": "/{AppID}/tickets/{TicketID}/tasks/{ID}/feed"
+                            "path": "/{app_id}/tickets/{TicketID}/tasks/{ID}/feed"
                         },
                         "method": "post",
                         "processing_options": {
@@ -322,7 +337,6 @@
                         },
                         "resource_allowance_default": "prohibited",
                         "resource_mandatory": [
-                            "AppID",
                             "ID",
                             "TicketID",
                             "Comments",
@@ -340,64 +354,114 @@
                     "IsRichHtml": "string*",
                     "Notify": "string*",
                     "PercentComplete": "string*",
-                    "TicketID": "string*"
+                    "TicketID": "string*",
+					"Title": "string*",
+					"Description": "string*",
+					"IsActive": "boolean*",
+					"NotifyResponsible": "boolean*",
+					"StartDate": "string*",
+					"EndDate": "string*",
+					"CompleteWithinMinutes": "string*",
+					"EstimatedMinutes": "string*",
+					"ActualMinutes": "string*",
+					"CreatedDate": "string*",
+					"CreatedUid": "string*",
+					"CreatedFullName": "string*",
+					"CreatedEmail": "string*",
+					"ModifiedDate": "string*",
+					"ModifiedUid": "string*",
+					"ModifiedFullName": "string*",
+					"CompletedDate": "string*",
+					"CompletedUid": "string*",
+					"CompletedFullName": "string*",
+					"ResponsibleUid": "string*",
+					"ResponsibleFullName": "string*",
+					"ResponsibleEmail": "string*",
+					"ResponsibleGroupID": "string*",
+					"ResponsibleGroupName": "string*",
+					"PredecessorID": "string*",
+					"PredecessorTitle": "string*",
+					"Order": "string*",
+					"TypeID": "string*",
+					"DetectedConflictCount": "string*",
+					"DetectedConflictTypes": "string*",
+					"LastConflictScanDateUtc": "string*",
+					"Uri": "string*"
                 }
             }
+        }
+    },
+	"rest": {
+        "authOptions": {
+            "authUrl": "https://{tenant_id}/TDWebApi/api/auth",
+            "directToken": true,
+            "headerName": "Authorization",
+            "headerTemplate": "Bearer {token}",
+            "postData": {
+                "Password": "{password}",
+                "UserName": "{user_name}"
+            }
         },
-        "options": {
-
-        },
-		"rest": {
-			"authOptions": {
-				"authUrl": "https://{tenant_id}/TDWebApi/api/auth",
-				"directToken": true,
-				"headerName": "Authorization",
-				"headerTemplate": "Bearer {token}",
-				"postData": {
-					"Password": "{password}",
-					"UserName": "{user_name}"
-				}
-			},
-			"config": {
-				"authentication": "custom_post_token",
-				"baseUrl": "https://{tenant_id}/TDWebApi/api",
-				"call_handling": "generic",
-				"get": {
-					"query_parameters": {
-					}
-				},
-				"test_connection": {
-					"url": "/accounts"
-				}
-			}
-		},
-		"connection": {
-			"items": [
-				{
-					"label": "Tenent URL:",
-					"name": "tenant_id",
-					"type": "textbox",
-					"value": ""
-				},
-				{
-					"label": "App ID:",
-					"name": "app_id",
-					"type": "textbox",
-					"value": ""
-				},
-				{
-					"label": "Ticket Status ID:",
-					"name": "status_id",
-					"type": "textbox",
-					"value": ""
-				},
-				{
-					"label": "Ticket Type ID:",
-					"name": "type_id",
-					"type": "textbox",
-					"value": ""
-				}
-			]
+        "config": {
+            "authentication": "custom_post_token",
+            "baseUrl": "https://{tenant_id}/TDWebApi/api",
+            "call_handling": "generic",
+            "get": {
+                "query_parameters": {
+                }
+            },
+            "test_connection": {
+                "url": "/accounts"
+            },
+			"socket_timeout": 3600000,
+			"retry": [
+				  {
+					  "type": "statusCode",
+					  "statusCode": 429,
+					  "retry": {
+						  "type": "simple",
+						  "maxCount": 12,
+						  "waitTime": 5
+					  }
+				  },
+				  {
+					  "type": "connectionError"
+				  }
+			  ]
 		}
+    },
+	"connection": {
+        "items": [
+            {
+                "label": "Tenent URL:",
+                "name": "tenant_id",
+                "type": "textbox",
+                "value": ""
+            },
+            {
+                "label": "App ID:",
+                "name": "app_id",
+                "type": "textbox",
+                "value": ""
+            },
+			{
+                "label": "Ticket Status ID:",
+                "name": "status_id",
+                "type": "textbox",
+                "value": ""
+            },
+			{
+                "label": "Ticket Type ID:",
+                "name": "type_id",
+                "type": "textbox",
+                "value": ""
+            },
+            {
+                "label": "Page Size:",
+                "name": "page_size",
+                "type": "textbox",
+                "value": "100"
+            }
+        ]
     }
 }
