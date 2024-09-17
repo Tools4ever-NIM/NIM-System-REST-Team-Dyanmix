@@ -46,6 +46,194 @@
                     "Url": "string*"
                 }
             },
+            "TicketTypes": {
+                "operations": {
+                    "TicketTypesList": {
+                        "call": {
+                            "path": "/{app_id}/tickets/types"
+                        },
+                        "method": "get",
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "query_parameters": {
+                        }
+                    }
+                },
+                "parameters": {
+                },
+                "key": "ID",
+                "resources": {
+                    "ID": "string*",
+                    "AppID": "string*",
+                    "AppName": "string*",
+                    "Name": "string*",
+                    "Description": "string*",
+                    "CategoryID": "string*",
+                    "CategoryName": "string*",
+                    "FullName": "string*",
+                    "IsActive": "boolean*",
+                    "CreatedDate": "string*",
+                    "CreatedByUid": "string*",
+                    "ModifiedDate": "string*",
+                    "ModifiedByUid": "string*",
+                    "ReviewerUid": "string*",
+                    "ReviewerFullName": "string*",
+                    "ReviewerEmail": "string*",
+                    "ReviewingGroupID": "string*",
+                    "ReviewingGroupName": "string*",
+                    "NotifyReviewer": "boolean*",
+                    "OtherNotificationEmailAddresses": "string*",
+                    "DefaultSLAID": "string*",
+                    "DefaultSLAName": "string*",
+                    "DefaultSLAIsActive": "boolean*",
+                    "WorkspaceID": "string*",
+                    "WorkspaceName": "string*",
+                    "ShouldAlertResponsibleOnTaskClose": "boolean*"
+                }
+            },
+            "Tickets": {
+                "operations": {
+                    "TicketsList": {
+                        "call": {
+                            "path": "/{app_id}/tickets/search"
+                        },
+						"body": {
+                                "TypeIDs": "{type_id}",
+								"StatusIDs": ["{status_id}"]
+                        },
+                        "verb":"post",
+                        "method": "get",
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "query_parameters": {
+                        }
+                    }
+                },
+                "parameters": {
+                },
+                "key": "ID",
+                "resources": {
+                    "ID": "string*",
+                    "ParentID": "string*",
+                    "ParentTitle": "string*",
+                    "ParentClass": "string*",
+                    "TypeID": "string*",
+                    "TypeName": "string*",
+                    "TypeCategoryID": "string*",
+                    "TypeCategoryName": "string*",
+                    "Classification": "string*",
+                    "ClassificationName": "string*",
+                    "FormID": "string*",
+                    "FormName": "string*",
+                    "Title": "string*",
+                    "Description": "string*",
+                    "IsRichHtml": "boolean*",
+                    "Uri": "string*",
+                    "AccountID": "string*",
+                    "AccountName": "string*",
+                    "SourceID": "string*",
+                    "SourceName": "string*",
+                    "StatusID": "string*",
+                    "StatusName": "string*",
+                    "StatusClass": "string*",
+                    "ImpactID": "string*",
+                    "ImpactName": "string*",
+                    "UrgencyID": "string*",
+                    "UrgencyName": "string*",
+                    "PriorityID": "string*",
+                    "PriorityName": "string*",
+                    "PriorityOrder": "string*",
+                    "SlaID": "string*",
+                    "SlaName": "string*",
+                    "IsSlaViolated": "boolean*",
+                    "IsSlaRespondByViolated": "string*",
+                    "IsSlaResolveByViolated": "string*",
+                    "RespondByDate": "string*",
+                    "ResolveByDate": "string*",
+                    "SlaBeginDate": "string*",
+                    "IsOnHold": "boolean*",
+                    "PlacedOnHoldDate": "string*",
+                    "GoesOffHoldDate": "string*",
+                    "CreatedDate": "string*",
+                    "CreatedUid": "string*",
+                    "CreatedFullName": "string*",
+                    "CreatedEmail": "string*",
+                    "ModifiedDate": "string*",
+                    "ModifiedUid": "string*",
+                    "ModifiedFullName": "string*",
+                    "RequestorName": "string*",
+                    "RequestorFirstName": "string*",
+                    "RequestorLastName": "string*",
+                    "RequestorEmail": "string*",
+                    "RequestorPhone": "string*",
+                    "RequestorUid": "string*",
+                    "ActualMinutes": "string*",
+                    "EstimatedMinutes": "string*",
+                    "DaysOld": "string*",
+                    "StartDate": "string*",
+                    "EndDate": "string*",
+                    "ResponsibleUid": "string*",
+                    "ResponsibleFullName": "string*",
+                    "ResponsibleEmail": "string*",
+                    "ResponsibleGroupID": "string*",
+                    "ResponsibleGroupName": "string*",
+                    "RespondedDate": "string*",
+                    "RespondedUid": "string*",
+                    "RespondedFullName": "string*",
+                    "CompletedDate": "string*",
+                    "CompletedUid": "string*",
+                    "CompletedFullName": "string*",
+                    "ReviewerUid": "string*",
+                    "ReviewerFullName": "string*",
+                    "ReviewerEmail": "string*",
+                    "ReviewingGroupID": "string*",
+                    "ReviewingGroupName": "string*",
+                    "TimeBudget": "string*",
+                    "ExpensesBudget": "string*",
+                    "TimeBudgetUsed": "string*",
+                    "ExpensesBudgetUsed": "string*",
+                    "IsConvertedToTask": "boolean*",
+                    "ConvertedToTaskDate": "string*",
+                    "ConvertedToTaskUid": "string*",
+                    "ConvertedToTaskFullName": "string*",
+                    "TaskProjectID": "string*",
+                    "TaskProjectName": "string*",
+                    "TaskPlanID": "string*",
+                    "TaskPlanName": "string*",
+                    "TaskID": "string*",
+                    "TaskTitle": "string*",
+                    "TaskStartDate": "string*",
+                    "TaskEndDate": "string*",
+                    "TaskPercentComplete": "string*",
+                    "LocationID": "string*",
+                    "LocationName": "string*",
+                    "LocationRoomID": "string*",
+                    "LocationRoomName": "string*",
+                    "RefCode": "string*",
+                    "ServiceID": "string*",
+                    "ServiceName": "string*",
+                    "ServiceOfferingID": "string*",
+                    "ServiceOfferingName": "string*",
+                    "ServiceCategoryID": "string*",
+                    "ServiceCategoryName": "string*",
+                    "ArticleID": "string*",
+                    "ArticleSubject": "string*",
+                    "ArticleStatus": "string*",
+                    "ArticleCategoryPathNames": "string*",
+                    "ArticleAppID": "string*",
+                    "ArticleShortcutID": "string*",
+                    "AppID": "string*",
+                    "Attributes": "string*",
+                    "Attachments": "string*",
+                    "Tasks": "string*",
+                    "Notify": "string*",
+                    "WorkflowID": "string*",
+                    "WorkflowConfigurationID": "string*",
+                    "WorkflowName": "string*"
+                }
+            },
             "TicketCustomAttributes": {
                 "key": "ID",
                 "operations": {
@@ -122,9 +310,24 @@
             "TicketTasks": {
                 "key": "ID",
                 "operations": {
-                    "TicketTaskUpdate": {
+                    "TicketTasksList": {
+                        "method": "get",
+						"call": {
+                            "mode": "iteration",
+							"table": "Tickets",
+							"iterator": "ID",
+							"path": "/{app_id}/tickets/{iterator}"
+                        },
+                        "processing_options": {
+                            "output_field": "Tasks"
+                        },
+                        "query_parameters": {
+                        },
+						"maxSessionCount": 10
+                    },
+					"TicketTaskUpdate": {
                         "call": {
-                            "path": "/{AppID}/tickets/{TicketID}/tasks/{ID}/feed"
+                            "path": "/{app_id}/tickets/{TicketID}/tasks/{ID}/feed"
                         },
                         "method": "post",
                         "processing_options": {
@@ -134,7 +337,6 @@
                         },
                         "resource_allowance_default": "prohibited",
                         "resource_mandatory": [
-                            "AppID",
                             "ID",
                             "TicketID",
                             "Comments",
@@ -152,26 +354,44 @@
                     "IsRichHtml": "string*",
                     "Notify": "string*",
                     "PercentComplete": "string*",
-                    "TicketID": "string*"
+                    "TicketID": "string*",
+					"Title": "string*",
+					"Description": "string*",
+					"IsActive": "boolean*",
+					"NotifyResponsible": "boolean*",
+					"StartDate": "string*",
+					"EndDate": "string*",
+					"CompleteWithinMinutes": "string*",
+					"EstimatedMinutes": "string*",
+					"ActualMinutes": "string*",
+					"CreatedDate": "string*",
+					"CreatedUid": "string*",
+					"CreatedFullName": "string*",
+					"CreatedEmail": "string*",
+					"ModifiedDate": "string*",
+					"ModifiedUid": "string*",
+					"ModifiedFullName": "string*",
+					"CompletedDate": "string*",
+					"CompletedUid": "string*",
+					"CompletedFullName": "string*",
+					"ResponsibleUid": "string*",
+					"ResponsibleFullName": "string*",
+					"ResponsibleEmail": "string*",
+					"ResponsibleGroupID": "string*",
+					"ResponsibleGroupName": "string*",
+					"PredecessorID": "string*",
+					"PredecessorTitle": "string*",
+					"Order": "string*",
+					"TypeID": "string*",
+					"DetectedConflictCount": "string*",
+					"DetectedConflictTypes": "string*",
+					"LastConflictScanDateUtc": "string*",
+					"Uri": "string*"
                 }
             }
-        },
-        "options": {
         }
     },
-    "rest": {
-        "config": {
-            "authentication": "custom_post_token",
-            "baseUrl": "https://{tenant_id}/TDWebApi/api",
-            "call_handling": "generic",
-            "get": {
-                "query_parameters": {
-                }
-            },
-            "test_connection": {
-                "url": "/accounts"
-            }
-        }
+	"rest": {
         "authOptions": {
             "authUrl": "https://{tenant_id}/TDWebApi/api/auth",
             "directToken": true,
@@ -182,12 +402,57 @@
                 "UserName": "{user_name}"
             }
         },
+        "config": {
+            "authentication": "custom_post_token",
+            "baseUrl": "https://{tenant_id}/TDWebApi/api",
+            "call_handling": "generic",
+            "get": {
+                "query_parameters": {
+                }
+            },
+            "test_connection": {
+                "url": "/accounts"
+            },
+			"socket_timeout": 3600000,
+			"retry": [
+				  {
+					  "type": "statusCode",
+					  "statusCode": 429,
+					  "retry": {
+						  "type": "simple",
+						  "maxCount": 12,
+						  "waitTime": 5
+					  }
+				  },
+				  {
+					  "type": "connectionError"
+				  }
+			  ]
+		}
     },
-    "connection": {
+	"connection": {
         "items": [
             {
                 "label": "Tenent URL:",
                 "name": "tenant_id",
+                "type": "textbox",
+                "value": ""
+            },
+            {
+                "label": "App ID:",
+                "name": "app_id",
+                "type": "textbox",
+                "value": ""
+            },
+			{
+                "label": "Ticket Status ID:",
+                "name": "status_id",
+                "type": "textbox",
+                "value": ""
+            },
+			{
+                "label": "Ticket Type ID:",
+                "name": "type_id",
                 "type": "textbox",
                 "value": ""
             },
