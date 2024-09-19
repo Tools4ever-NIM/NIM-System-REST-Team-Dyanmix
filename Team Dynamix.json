@@ -225,7 +225,6 @@
                     "ArticleAppID": "string*",
                     "ArticleShortcutID": "string*",
                     "AppID": "string*",
-                    "Attributes": "string*",
                     "Attachments": "string*",
                     "Tasks": "string*",
                     "Notify": "string*",
@@ -303,6 +302,59 @@
                     "SectionID": "string*",
                     "SectionName": "string*",
                     "TicketID": "string",
+                    "Value": "string*",
+                    "ValueText": "string*"
+                }
+            },
+			"TicketAttributes": {
+                "key": "ID",
+                "operations": {
+                    "TicketAttributesList": {
+                        "method": "get",
+						"call": {
+                            "mode": "iteration",
+							"table": "Tickets",
+							"iterator": "ID",
+							"path": "/{app_id}/tickets/{iterator}",
+							"base": {
+								"ticket_id": "{iterator}"
+							}
+                        },
+						"put_hash_in_child_tables": "nim_hash",
+                        "processing_options": {
+                            "output_field": "Attributes"
+                        },
+                        "query_parameters": {
+                        },
+						"maxSessionCount": 10
+                    }
+                },
+                "parameters": {
+                },
+                "resources": {
+                    "ticket_id": "string*",
+					"AttributeValue": "string*",
+                    "Choices": [
+                        {
+                            "DateCreated": "datetime*",
+                            "DateModified": "datetime*",
+                            "ID": "string*",
+                            "IsActive": "boolean*",
+                            "Name": "string*",
+                            "Order": "string*"
+                        }
+                    ],
+                    "ChoicesText": "string*",
+                    "DataType": "string*",
+                    "Description": "string*",
+                    "FieldType": "string*",
+                    "ID": "string*",
+                    "IsRequired": "boolean*",
+                    "IsUpdatable": "boolean*",
+                    "Name": "string*",
+                    "Order": "string*",
+                    "SectionID": "string*",
+                    "SectionName": "string*",
                     "Value": "string*",
                     "ValueText": "string*"
                 }
@@ -421,7 +473,7 @@
 					  "retry": {
 						  "type": "simple",
 						  "maxCount": 12,
-						  "waitTime": 5
+						  "waitTime": 10
 					  }
 				  },
 				  {
