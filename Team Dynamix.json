@@ -376,28 +376,6 @@
                         "query_parameters": {
                         },
 						"maxSessionCount": 10
-                    },
-					"TicketTaskUpdate": {
-                        "call": {
-                            "path": "/{app_id}/tickets/{TicketID}/tasks/{ID}"
-                        },
-                        "method": "put",
-                        "processing_options": {
-                            "output_field": null
-                        },
-                        "query_parameters": {
-                        },
-                        "resource_allowance_default": "prohibited",
-                        "resource_mandatory": [
-                            "ID",
-                            "TicketID",
-                            "PercentComplete",
-							"CompletedDate",
-							"CompletedUid",
-							"CompletedFullName",
-							"Title",
-							"EstimatedMinutes"
-                        ]
                     }
                 },
                 "parameters": {
@@ -409,7 +387,7 @@
                     "IsPrivate": "boolean*",
                     "IsRichHtml": "string*",
                     "Notify": "string*",
-                    "PercentComplete": "string*",
+                    "PercentComplete": "number*",
                     "TicketID": "string*",
 					"Title": "string*",
 					"Description": "string*",
@@ -480,7 +458,8 @@
 						"body": {
 							"_nim_merge_attributes_": false,
 							"Comments": "{Body}",
-							"IsPrivate": "{IsPrivate}"
+							"IsPrivate": "{IsPrivate}",
+							"PercentComplete": "{PercentComplete}"
 						},
                         "query_parameters": {
                         },
@@ -488,6 +467,7 @@
                         "resource_allowance_default": "prohibited",
                         "resource_mandatory": [
                             "ItemID",
+							"PercentComplete",
                             "TicketID",
                             "Body",
                             "IsPrivate"
@@ -531,7 +511,8 @@
 					"HasAttachment": "boolean*",
 					"Uri": "string*",
 					"AppID": "string*",
-					"TicketID": "string*"
+					"TicketID": "string*",
+					"PercentComplete": "number*"
                 }
             }
         }
