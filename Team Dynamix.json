@@ -379,9 +379,9 @@
                     },
 					"TicketTaskUpdate": {
                         "call": {
-                            "path": "/{app_id}/tickets/{TicketID}/tasks/{ID}/feed"
+                            "path": "/{app_id}/tickets/{TicketID}/tasks/{ID}"
                         },
-                        "method": "post",
+                        "method": "put",
                         "processing_options": {
                             "output_field": null
                         },
@@ -391,8 +391,12 @@
                         "resource_mandatory": [
                             "ID",
                             "TicketID",
-                            "Comments",
-                            "IsPrivate"
+                            "PercentComplete",
+							"CompletedDate",
+							"CompletedUid",
+							"CompletedFullName",
+							"Title",
+							"EstimatedMinutes"
                         ]
                     }
                 },
@@ -439,6 +443,95 @@
 					"DetectedConflictTypes": "string*",
 					"LastConflictScanDateUtc": "string*",
 					"Uri": "string*"
+                }
+            },
+			"TicketTaskFeed": {
+                "key": "ID",
+                "operations": {
+                    "TicketTasksList": {
+                        "method": "get",
+						"call": {
+                            "mode": "iteration",
+							"table": "TicketTasks",
+							"iterator": "ID",
+							"iterator_columns": [
+								"TicketID"
+							],
+							"path": "/{app_id}/tickets/{TicketID}/tasks/{iterator}/feed",
+							"base": {
+								"TicketID": "{TicketID}"
+							}
+                        },
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "query_parameters": {
+                        },
+						"maxSessionCount": 10
+                    },
+					"TicketTaskFeedCreate": {
+                        "call": {
+                            "path": "/{app_id}/tickets/{TicketID}/tasks/{ItemID}/feed"
+                        },
+                        "method": "post",
+                        "processing_options": {
+                            "output_field": null
+                        },
+						"body": {
+							"_nim_merge_attributes_": false,
+							"Comments": "{Body}",
+							"IsPrivate": "{IsPrivate}"
+						},
+                        "query_parameters": {
+                        },
+						"semantics": "create",
+                        "resource_allowance_default": "prohibited",
+                        "resource_mandatory": [
+                            "ItemID",
+                            "TicketID",
+                            "Body",
+                            "IsPrivate"
+                        ]
+                    }
+                },
+                "parameters": {
+                },
+                "resources": {
+                    "ID": "string*",
+					"CreatedUid": "string*",
+					"CreatedRefID": "string*",
+					"CreatedFullName": "string*",
+					"CreatedFirstName": "string*",
+					"CreatedLastName": "string*",
+					"CreatedByPicPath": "string*",
+					"CreatedDate": "string*",
+					"LastUpdatedDate": "string*",
+					"ProjectID": "string*",
+					"ProjectName": "string*",
+					"PlanID": "string*",
+					"PlanName": "string*",
+					"ItemType": "string*",
+					"ItemID": "string*",
+					"ItemTitle": "string*",
+					"ReferenceID": "string*",
+					"Body": "string*",
+					"IsRichHtml": "boolean*",
+					"UpdateType": "string*",
+					"NotifiedList": "string*",
+					"IsPrivate": "boolean*",
+					"IsParent": "boolean*",
+					"Replies": "string*",
+					"RepliesCount": "string*",
+					"Likes": "string*",
+					"ILike": "boolean*",
+					"LikesCount": "string*",
+					"IsCommunication": "boolean*",
+					"Participants": "string*",
+					"BreadcrumbsHtml": "string*",
+					"HasAttachment": "boolean*",
+					"Uri": "string*",
+					"AppID": "string*",
+					"TicketID": "string*"
                 }
             }
         }
